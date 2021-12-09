@@ -1,0 +1,161 @@
+
+<canvas id="gc" width="640" height="480" tabindex="-1"></canvas>
+
+
+<script>
+
+    const KeyE=37;
+    const KeyD=39;
+    const KeyC=38;
+    const KeyB=40;
+    
+    
+    window.onload = inicio;
+    
+    function inicio (){
+        tamanho = 1;
+        canvas = document.getElementById("gc");
+        console.log(canvas);
+        ccontext = canvas.getContext("2d");
+        setInterval(update,1000/30);
+        canvas.onkeydown = input;
+        posFrutaX = 16 * getRandomIntInclusive(0,39);
+        posFrutaY = 16 * getRandomIntInclusive(0,29);
+        iniciaObjetos();
+        snake = []
+        snake.push({x:64,y:64});
+        snake.push({x:48,y:64});
+        snake.push({x:32,y:64});
+        snake.push({x:16,y:64});
+
+    }
+    function update()
+    {
+        draw()
+    }
+    function draw()
+    {   
+        ccontext.fillStyle= "black";
+        ccontext.fillRect(0,0,canvas.width,canvas.height);
+        ccontext.fillStyle= "red";
+        ccontext.fillRect(x = posFrutaX,y = posFrutaY ,fruta.width,fruta.height);
+
+        for(var i=0; i<snake.length;i++)
+        {
+                ccontext.fillStyle= "green";
+                ccontext.fillRect(snake[i].x,snake[i].y,16,16);
+        }
+    }
+    function input(ev)
+    {
+        if(ev.type=="keydown")
+        {
+            if(ev.keyCode == KeyE)
+            {
+                snake[0].x -=16;
+            
+            }
+    
+            if(ev.keyCode == KeyC)
+            {
+                snake[0].y -=16;
+                
+            }
+            if(ev.keyCode == KeyD)
+            {
+                snake[0].x +=16;
+                
+            }
+            if(ev.keyCode == KeyB)
+            {
+                snake[0].y +=16;
+                
+            }
+            console.log("x:" +snake[0].x);
+            console.log("y:" +snake[0].y);
+            console.log("\n");
+            conferePos();
+            comeuFruta();
+            colisao();
+            movimentarcobra();
+           
+        }
+    }
+    // confere se a cobra saiu da tela,se saiu coloca ela do outro lado. 
+    function conferePos()
+    {
+        if(snake[0].y == 480)
+            {
+                snake[0].y=0;
+            }
+            if(snake[0].y == -16)
+            {
+                snake[0].y=464;
+            }
+            if(snake[0].x == 640)
+            {
+                snake[0].x=0;
+            }
+            if(snake[0].x == -16)
+            {
+                snake[0].x=624;
+            }
+    }
+
+    function movimentarcobra()
+    {
+        for(var i=snake.length-1;i>0;i--)
+        {
+            snake[i].x = snake[i-1].x;
+            snake[i].y = snake[i-1].y;
+        }
+    }
+    //confere se comeu a fruta
+    function comeuFruta()
+    {
+        if(snake[0].x == posFrutaX && snake[0].y == posFrutaY)
+        {
+            posFrutaX =  16 * getRandomIntInclusive(0,39);
+            posFrutaY = 16 *  getRandomIntInclusive(0,29);
+            crescecauda();
+        }
+        
+    }
+    function iniciaObjetos()
+    {
+        snake = {
+            x:16,
+            y:16,
+        }
+
+        fruta = {
+            width:14,
+            height:14
+        }
+        
+        
+    }
+    function getRandomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function crescecauda()
+    {
+        snake.push({x:snake[snake.length-1].x-16,y:snake[snake.length-1].y-16})    
+    }
+
+    function colisao()
+    {
+        for(var i=1;i<snake.length;i++)
+        {
+            if(snake[0].x == snake[i].x && snake[0].y == snake[i].y)
+            {
+                alert("Colidiu");
+                inicio();
+
+            }
+        }
+    }
+</script>

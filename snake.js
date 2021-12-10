@@ -3,26 +3,22 @@ const KeyD=39;
 const KeyC=38;
 const KeyB=40;
 
-
-window.onload = inicio;
-
-function inicio (){
-    tamanho = 1;
+function inicio (velocidade){
     canvas = document.getElementById("gc");
     console.log(canvas);
     ccontext = canvas.getContext("2d");
-    setInterval(update,180);
+   
     canvas.onkeydown = input;
     posFrutaX = 16 * getRandomIntInclusive(0,39);
     posFrutaY = 16 * getRandomIntInclusive(0,29);
     iniciaObjetos();
     snake = [];
     dir = 2;
-    
     snake.push({x:64,y:64});
     snake.push({x:48,y:64});
     snake.push({x:32,y:64});
     snake.push({x:16,y:64});
+    setInterval(update,velocidade);
 
 }
 function update()
@@ -177,7 +173,7 @@ function colisao()
             alert("Voce bateu!");
             console.log("Colisao x:",snake[i].x);
             console.log("Colisao y:",snake[i].y);
-            inicio();
+            window.location.reload()
 
         }
     }

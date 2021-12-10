@@ -1,15 +1,37 @@
-html, body {
-    height: 100%;
-    margin: 0;
-  }
 
   body {
     background: black;
-    display:flex;
-    align-items: center;
-    justify-content: center;
   }
   canvas {
     border: 1px solid white;
+    margin-left: 280px;
+    margin-top:50px;
+  }
+  h1{
+    color:white;
+    margin-top:20px;
+    font-size:20px;
+  }
+  p{
+    color:white;
+    font-size:12px;
+  }
+  #devagar
+  {
+    position:absolute; 
+    top:60px;
+    left:20px;
+  }
+  #media
+  {
+    position:absolute; 
+    top:100px;
+    left:20px;
+  }
+  #rapida
+  {
+    position:absolute; 
+    top:140px;
+    left:20px;
   }
   

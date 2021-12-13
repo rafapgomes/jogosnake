@@ -3,6 +3,7 @@ const KeyD=39;
 const KeyC=38;
 const KeyB=40;
 var intervalo;
+var tipo = 0;
 
 function inicio (velocidade){
     clearInterval(intervalo);
@@ -21,7 +22,6 @@ function inicio (velocidade){
     snake.push({x:16,y:64});
     intervalo = setInterval(update,velocidade);
 }
-
 
 
 function update()
@@ -43,7 +43,7 @@ function draw()
 
     colisao();
     movimentarcobra();
-    conferePos();
+    conferePos(tipo);
     comeuFruta();
 
 }
@@ -83,9 +83,11 @@ function input(ev)
     }
 }
 // confere se a cobra saiu da tela,se saiu coloca ela do outro lado. 
-function conferePos()
+function conferePos(tipo)
 {
-    if(snake[0].y == 480)
+    if(tipo==0)
+    {
+        if(snake[0].y == 480)
         {
             snake[0].y=0;
         }
@@ -101,6 +103,30 @@ function conferePos()
         {
             snake[0].x=624;
         }
+    }
+    if(tipo==1)
+    {
+        if(snake[0].y == 480)
+        {
+            alert("Colidiu")
+            inicio(140);
+        }
+        if(snake[0].y == -16)
+        {
+            alert("Colidiu")
+            inicio(140);
+        }
+        if(snake[0].x == 640)
+        {
+            alert("Colidiu")
+            inicio(140);
+        }
+        if(snake[0].x == -16)
+        {
+            alert("Colidiu")
+            inicio(140);
+        }
+    }
 }
 // copia um elemento do vetor para o proximo, para movimentar a cobra. Depois movimenta a cabeça
 function movimentarcobra()

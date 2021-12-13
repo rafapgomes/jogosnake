@@ -3,8 +3,10 @@
 
 <link rel="stylesheet" type="text/css" href="snake.css">
 <body>
-   
-    <h1>Velocidade do jogo:</h1>
+    <h1 id="borda">Escolha se quer que a cobra mude de lado  <br> ou morra ao alcançar a borada</h1>
+    <button id="borda0" onclick="tipo = 0">Sem borda</button>
+    <button id="borda1" onclick="tipo = 1">Com borda</button>
+    <h1 id="velocidade">Velocidade do jogo:</h1>
     <button id="devagar" onclick="inicio(140)">Devagar</button>
     <button id="media" onclick="inicio(120)">Média</button>
     <button id="rapida" onclick="inicio(100)">Rápida</button>

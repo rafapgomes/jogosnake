@@ -3,6 +3,8 @@ const KeyD=39;
 const KeyC=38;
 const KeyB=40;
 
+
+
 function inicio (velocidade){
     canvas = document.getElementById("gc");
     console.log(canvas);
@@ -14,17 +16,40 @@ function inicio (velocidade){
     iniciaObjetos();
     snake = [];
     dir = 2;
+    startAnimating(velocidade);   
     snake.push({x:64,y:64});
     snake.push({x:48,y:64});
     snake.push({x:32,y:64});
     snake.push({x:16,y:64});
-    setInterval(update,velocidade);
 
 }
-function update()
-{
-    draw()
+
+function startAnimating(fps) {
+    fpsInterval = 1000 / fps;
+    then = Date.now();
+    startTime = then;
+    animate();
 }
+
+function animate() {
+
+    requestAnimationFrame(animate);
+
+
+    now = Date.now();
+    elapsed = now - then;
+
+
+    if (elapsed > fpsInterval) {
+
+        then = now - (elapsed % fpsInterval);
+
+        draw()
+    }
+}
+
+
+
 function draw()
 {   
     ccontext.fillStyle= "black";

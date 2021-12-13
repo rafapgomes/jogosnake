@@ -2,54 +2,32 @@ const KeyE=37;
 const KeyD=39;
 const KeyC=38;
 const KeyB=40;
-
-
+var intervalo;
 
 function inicio (velocidade){
+    clearInterval(intervalo);
     canvas = document.getElementById("gc");
     console.log(canvas);
     ccontext = canvas.getContext("2d");
-   
     canvas.onkeydown = input;
     posFrutaX = 16 * getRandomIntInclusive(0,39);
     posFrutaY = 16 * getRandomIntInclusive(0,29);
     iniciaObjetos();
     snake = [];
     dir = 2;
-    startAnimating(velocidade);   
     snake.push({x:64,y:64});
     snake.push({x:48,y:64});
     snake.push({x:32,y:64});
     snake.push({x:16,y:64});
-
-}
-
-function startAnimating(fps) {
-    fpsInterval = 1000 / fps;
-    then = Date.now();
-    startTime = then;
-    animate();
-}
-
-function animate() {
-
-    requestAnimationFrame(animate);
-
-
-    now = Date.now();
-    elapsed = now - then;
-
-
-    if (elapsed > fpsInterval) {
-
-        then = now - (elapsed % fpsInterval);
-
-        draw()
-    }
+    intervalo = setInterval(update,velocidade);
 }
 
 
 
+function update()
+{
+    draw()
+}
 function draw()
 {   
     ccontext.fillStyle= "black";
@@ -198,8 +176,8 @@ function colisao()
             alert("Voce bateu!");
             console.log("Colisao x:",snake[i].x);
             console.log("Colisao y:",snake[i].y);
-            window.location.reload()
-
+            clearInterval(intervalo);
+            inicio(140);
         }
     }
 }

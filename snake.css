@@ -1,11 +1,12 @@
 
   body {
     background: black;
+    position: fixed;
   }
   canvas {
     border: 1px solid white;
-    margin-left: 280px;
-    margin-top:50px;
+    position:relative;
+    bottom:70px;
   }
   #velocidade{
     color:white;
@@ -20,36 +21,48 @@
   }
   #borda0
   {
-    position:absolute; 
-    top:80px;
-    left:20px;
+    position:relative; 
+    top:30px;
+    left:10px;
   }
   #borda1
   {
-    position:absolute; 
-    top:120px;
+    position:relative; 
+    top:30px;
     left:20px;
   }
-  p{
+  #texto1{
+    position:relative;
     color:white;
     font-size:12px;
+    bottom:60px;
   }
   #devagar
   {
-    position:absolute; 
-    top:220px;
-    left:20px;
+    position:relative; 
+    left:10px;
   }
   #media
   {
-    position:absolute; 
-    top:260px;
+    position:relative; 
     left:20px;
   }
   #rapida
   {
-    position:absolute; 
-    top:300px;
-    left:20px;
+    position:relative; 
+    left:30px;
   }
-  
+  #pontuacao
+  {
+    position:relative;
+    color:white;
+    font-size:20px;
+    left:500px;
+  }
+  #score
+  {
+    position:relative;
+    color:white;
+    font-size:20px;
+    left:550px;
+  }

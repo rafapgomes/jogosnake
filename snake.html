@@ -3,6 +3,8 @@
 
 <link rel="stylesheet" type="text/css" href="snake.css">
 <body>
+    <h1 id="pontuacao">Pontuação</h1>
+    <p id="score">0</p>
     <h1 id="borda">Escolha se quer que a cobra mude de lado  <br> ou morra ao alcançar a borada</h1>
     <button id="borda0" onclick="tipo = 0">Sem borda</button>
     <button id="borda1" onclick="tipo = 1">Com borda</button>
@@ -16,7 +18,7 @@
     <br>
     <br>
     <br>
-    <p>Clique na tela para começar a jogar.</p>    
+    <p id="texto1">Clique na tela para começar a jogar.</p>    
     <canvas id="gc" width="640" height="480" tabindex="-1"></canvas>
     <script type="text/javascript" src="snake.js"> </script>
 </body>

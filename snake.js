@@ -109,22 +109,25 @@ function conferePos(tipo)
         if(snake[0].y == 480)
         {
             alert("Colidiu")
-            inicio(140);
+            window.location.reload();
         }
         if(snake[0].y == -16)
         {
             alert("Colidiu")
-            inicio(140);
+            window.location.reload();
+
         }
         if(snake[0].x == 640)
         {
             alert("Colidiu")
-            inicio(140);
+            window.location.reload();
+
         }
         if(snake[0].x == -16)
         {
             alert("Colidiu")
-            inicio(140);
+            window.location.reload();
+
         }
     }
 }
@@ -164,6 +167,7 @@ function comeuFruta()
         posFrutaX =  16 * getRandomIntInclusive(0,39);
         posFrutaY = 16 *  getRandomIntInclusive(0,29);
         crescecauda();
+        score();
     }
     
 }
@@ -178,8 +182,6 @@ function iniciaObjetos()
         width:14,
         height:14
     }
-    
-    
 }
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
@@ -203,12 +205,16 @@ function colisao()
             console.log("Colisao x:",snake[i].x);
             console.log("Colisao y:",snake[i].y);
             clearInterval(intervalo);
-            inicio(140);
+            window.location.reload();
+
         }
     }
 }
-function setTopo()
+var pontos = 0;
+
+function score()
 {
-    $(window).scrollTop(0);
+    pontos = pontos+1;
+    document.getElementById("score").innerHTML = pontos;
 }
-$(window).bind('scroll', setTopo);
+

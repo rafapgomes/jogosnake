@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "pg": "^8.7.3"
+  },
+  "name": "jogosnake",
+  "description": "Jogo da cobrinha feito em HTML 5",
+  "version": "1.0.0",
+  "main": "snake.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafapgomes/jogosnake.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rafapgomes/jogosnake/issues"
+  },
+  "homepage": "https://github.com/rafapgomes/jogosnake#readme"
+}

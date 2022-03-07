@@ -6,14 +6,25 @@
   canvas {
     border: 1px solid white;
     position:relative;
-    bottom:70px;
+    bottom:300px;
+    left:300px;
+  }
+  #texto2{
+    color:white;
+    left: 1000px;
+    position: relative;
+  }
+  #name
+  {
+    position: relative;
+    left: 1200px;
   }
   #velocidade{
     color:white;
     margin-top:120px;
     font-size:20px;
   }
-
+  
   #borda{
     color:white;
     margin-top:20px;

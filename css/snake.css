@@ -2,16 +2,16 @@
   body {
     background: black;
     position: fixed;
+    color:white;
   }
   canvas {
     border: 1px solid white;
-    position:relative;
-    bottom:300px;
-    left:300px;
+    position: relative;
+    bottom:400px;
+    left:400px;
   }
   #texto2{
-    color:white;
-    left: 1000px;
+    left: 900px;
     position: relative;
   }
   #name
@@ -20,13 +20,11 @@
     left: 1200px;
   }
   #velocidade{
-    color:white;
     margin-top:120px;
     font-size:20px;
   }
   
   #borda{
-    color:white;
     margin-top:20px;
     font-size:20px;
   }
@@ -44,7 +42,6 @@
   }
   #texto1{
     position:relative;
-    color:white;
     font-size:12px;
     bottom:60px;
   }
@@ -66,14 +63,22 @@
   #pontuacao
   {
     position:relative;
-    color:white;
     font-size:20px;
     left:500px;
   }
   #score
   {
     position:relative;
-    color:white;
     font-size:20px;
     left:550px;
   }
+  #botao1
+ {
+    position:relative;
+    left:1200px;
+ }
+table{
+  position:relative;
+  left:1200px;
+  bottom:900px;
+}

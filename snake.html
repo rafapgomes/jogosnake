@@ -1,10 +1,11 @@
 <html>
 <title> Jogo da Cobrinha</title>
 
-<link rel="stylesheet" type="text/css" href="snake.css">
+<link rel="stylesheet" type="text/css" href="css/snake.css">
 <body>
     <p id="texto2">Digite seu nome se quiser colocar no ranking. Caso contrario um nome aleatório será usado</p>
     <input type="text" id="name">
+    <button id="botao1">Salvar</button>
     <h1 id="pontuacao">Pontuação</h1>
     <p id="score">0</p>
     <h1 id="borda">Escolha se quer que a cobra mude de lado  <br> ou morra ao alcançar a borada</h1>
@@ -20,9 +21,24 @@
     <br>
     <br>
     <br>
-    <p id="texto1">Clique na tela para começar a jogar.</p>    
+    <p id="texto1">Clique na tela para começar a jogar.</p>  
     <canvas id="gc" width="640" height="480" tabindex="-1"></canvas>
-    <script type="text/javascript" src="snake.js"> </script>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Pontos</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+
+    </table>
+    
+    <script type="text/javascript" src="js/snake.js"> </script>
+  
+    
 </body>
 
 </html>

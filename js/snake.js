@@ -4,6 +4,47 @@ const KeyC=38;
 const KeyB=40;
 var intervalo;
 var tipo = 0;
+var nome =nome_aleatorio();
+
+
+let ajax;
+ajax = new XMLHttpRequest();
+
+ajax.open("GET",'http://localhost:3000/');
+var cont = 0    
+ajax.onreadystatechange = function()
+    {
+        if (ajax.readyState == 4 && ajax.status == 200)
+            {
+               if (ajax.responseText)
+                    {
+                        var corpo_tabela = document.querySelector("tbody")
+                        var data =  ajax.responseText;
+                        data = JSON.parse(data)
+                     
+                        
+                        
+                        for(var i=0; i<data.rowCount;i++)
+                        {
+                            var linha = document.createElement("tr")
+                            var campo_nome = document.createElement("td")
+                            var campo_pontos = document.createElement("td")
+                            var texto_nome = document.createTextNode(data.rows[i].nome)
+                            var texto_pontos = document.createTextNode(data.rows[i].pontos)
+         
+                            campo_nome.appendChild(texto_nome)
+                            campo_pontos.appendChild(texto_pontos)
+         
+                            linha.appendChild(campo_nome)
+                            linha.appendChild(campo_pontos)
+                            corpo_tabela.appendChild(linha)
+                        }
+                        
+                    }
+              }
+        };
+ajax.send()
+
 
 function inicio (velocidade){
     clearInterval(intervalo);
@@ -23,6 +64,11 @@ function inicio (velocidade){
     intervalo = setInterval(update,velocidade);
 }
 
+
+function nome_aleatorio()
+{
+     return "usuario" +(getRandomIntInclusive(1,200)).toString()
+}
 
 function update()
 {
@@ -47,6 +93,13 @@ function draw()
     comeuFruta();
 
 }
+var botao = document.getElementById("botao1");
+
+botao.addEventListener("click",function()
+{
+    nome = document.querySelector("#name").value;
+})
+
 function input(ev)
 {
     console.log("Direcao:",dir);
@@ -73,6 +126,7 @@ function input(ev)
             dir = 3;
             
         }
+        console.log("ouii")
             console.log("x:" +snake[0].x);
             console.log("y:" +snake[0].y);
             console.log("\n");
@@ -89,14 +143,17 @@ function conferePos(tipo)
     {
         if(snake[0].y == 480)
         {
+
             snake[0].y=0;
         }
         if(snake[0].y == -16)
         {
+
             snake[0].y=464;
         }
         if(snake[0].x == 640)
         {
+
             snake[0].x=0;
         }
         if(snake[0].x == -16)
@@ -108,25 +165,29 @@ function conferePos(tipo)
     {
         if(snake[0].y == 480)
         {
-            alert("Colidiu")
-            window.location.reload();
+            alert("Colidiu");
+            adicionaRanking(nome,pontos);
+
         }
         if(snake[0].y == -16)
         {
-            alert("Colidiu")
-            window.location.reload();
+            alert("Colidiu");
+            adicionaRanking(nome,pontos);
+
 
         }
         if(snake[0].x == 640)
         {
-            alert("Colidiu")
-            window.location.reload();
+            alert("Colidiu");
+            adicionaRanking(nome,pontos);
+
 
         }
         if(snake[0].x == -16)
         {
-            alert("Colidiu")
-            window.location.reload();
+            alert("Colidiu");
+            adicionaRanking(nome,pontos);
+
 
         }
     }
@@ -202,19 +263,43 @@ function colisao()
         if(snake[0].x == snake[i].x && snake[0].y == snake[i].y)
         {
             alert("Voce bateu!");
-            console.log("Colisao x:",snake[i].x);
-            console.log("Colisao y:",snake[i].y);
+            adicionaRanking(nome,pontos);
             clearInterval(intervalo);
-            window.location.reload();
-
         }
     }
 }
 var pontos = 0;
-
 function score()
 {
     pontos = pontos+1;
     document.getElementById("score").innerHTML = pontos;
 }
+function adicionaRanking(nome,pontos)
+{
+    console.log("teste")
+    ajax.open("POST",'http://localhost:3000/inserir');
+    ajax.setRequestHeader("Content-Type", "application/json");
+    ajax.onreadystatechange = function()
+    {
+        if(ajax.status=200 && ajax.readyState===4)
+        {
+            console.log(ajax.responseText);
+            window.location.reload()
+        }
+    }
+
+
+    var obj = {
+        nome  : this.nome,
+        pontos : this.pontos
+    }
+    var data = JSON.stringify(obj)
+    ajax.send(data);
+
+}
+
+    
+
+
+
 

@@ -1,6 +1,6 @@
 const pg = require('pg');
 
-
+var dados;
 function criacliente()
 {
    return client = new pg.Client({
@@ -12,8 +12,8 @@ function criacliente()
     })
     
 }
-async function inserir(nome,pontos)
-{   
+ async function inserir (nome,pontos)
+{   console.log("teste")
     var client = await criacliente();
     queryinserir = 'INSERT INTO ranking (nome,pontos) VALUES ($1,$2)'
     await client.connect()
@@ -27,17 +27,17 @@ async function inserir(nome,pontos)
         if(err.code == 23505)
         { 
             console.log('Nome já cadastrado. Os novos dados irão sobrepor os existentes');
-            await update(nome,pontos);          
+            await update(nome,pontos); 
+            
         }   
     }
     finally
     {
         await client.end()
-   
+        console.log("Dados inseridos")
+        return "Dados inseridos"
     }
-
 }
-
 async function update(nome,pontos)
 {   var client = await criacliente();
     await client.connect();
@@ -49,10 +49,9 @@ async function update(nome,pontos)
     finally
     {
         await client.end();
+        console.log("Dados inseridos");
     }
 }
-
-inserir('doarda',111);
 
 async function deletar(nome)
 {
@@ -71,8 +70,33 @@ async function deletar(nome)
     finally
     {
         await client.end();
+        console.log("Dados inseridos");
     }
 }
 
 
 
+
+async function select()
+{
+    var dados;
+    var client = await criacliente()
+    query = "SELECT * FROM public.ranking ORDER BY pontos DESC"
+    await client.connect();
+    try
+    {
+       var dados = await client.query(query);
+    }
+    catch(err)
+    {
+        console.log(err);
+    }
+    finally
+    {
+        await client.end();
+        return dados
+    }
+}
+select()
+
+module.exports = {criacliente,inserir,deletar,update,select}

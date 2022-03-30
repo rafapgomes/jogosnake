@@ -7,45 +7,49 @@ var tipo = 0;
 var nome =nome_aleatorio();
 
 
-let ajax;
-ajax = new XMLHttpRequest();
 
-ajax.open("GET",'http://localhost:3000/');
-var cont = 0    
-ajax.onreadystatechange = function()
-    {
-        if (ajax.readyState == 4 && ajax.status == 200)
-            {
-               if (ajax.responseText)
-                    {
-                        var corpo_tabela = document.querySelector("tbody")
-                        var data =  ajax.responseText;
-                        data = JSON.parse(data)
-                     
-                        
-                        
-                        for(var i=0; i<data.rowCount;i++)
+function getDados()
+{
+    let ajax;
+    ajax = new XMLHttpRequest();
+
+    ajax.open("GET",'http://localhost:3000/');
+    var cont = 0    
+    ajax.onreadystatechange = function()
+        {
+            if (ajax.readyState == 4 && ajax.status == 200)
+                {
+                if (ajax.responseText)
                         {
-                            var linha = document.createElement("tr")
-                            var campo_nome = document.createElement("td")
-                            var campo_pontos = document.createElement("td")
-                            var texto_nome = document.createTextNode(data.rows[i].nome)
-                            var texto_pontos = document.createTextNode(data.rows[i].pontos)
-         
-                            campo_nome.appendChild(texto_nome)
-                            campo_pontos.appendChild(texto_pontos)
-         
-                            linha.appendChild(campo_nome)
-                            linha.appendChild(campo_pontos)
-                            corpo_tabela.appendChild(linha)
-                        }
+                            var corpo_tabela = document.querySelector("tbody")
+                            var data =  ajax.responseText;
+                            data = JSON.parse(data)
                         
-                    }
-              }
-        };
-ajax.send()
+                            
+                            
+                            for(var i=0; i<data.rowCount;i++)
+                            {
+                                var linha = document.createElement("tr")
+                                var campo_nome = document.createElement("td")
+                                var campo_pontos = document.createElement("td")
+                                var texto_nome = document.createTextNode(data.rows[i].nome)
+                                var texto_pontos = document.createTextNode(data.rows[i].pontos)
+            
+                                campo_nome.appendChild(texto_nome)
+                                campo_pontos.appendChild(texto_pontos)
+            
+                                linha.appendChild(campo_nome)
+                                linha.appendChild(campo_pontos)
+                                corpo_tabela.appendChild(linha)
+                            }
+                            
+                        }
+                }
+            };
+    ajax.send() 
+}
 
-
+getDados();
 function inicio (velocidade){
     clearInterval(intervalo);
     canvas = document.getElementById("gc");
@@ -81,16 +85,17 @@ function draw()
     ccontext.fillStyle= "red";
     ccontext.fillRect(x = posFrutaX,y = posFrutaY ,fruta.width,fruta.height);
 
+
+    movimentarcobra();
+    colisao();
+    conferePos(tipo);
+    comeuFruta();
+
     for(var i=0; i<snake.length;i++)
     {
             ccontext.fillStyle= "green";
             ccontext.fillRect(snake[i].x,snake[i].y,16,16);
     }
-
-    colisao();
-    movimentarcobra();
-    conferePos(tipo);
-    comeuFruta();
 
 }
 var botao = document.getElementById("botao1");

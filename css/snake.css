@@ -82,3 +82,8 @@ table{
   left:1200px;
   bottom:900px;
 }
+#nome_user
+{
+  left:1200px;
+  position: relative;
+}

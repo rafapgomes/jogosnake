@@ -4,7 +4,11 @@ const KeyC=38;
 const KeyB=40;
 var intervalo;
 var tipo = 0;
-var nome =nome_aleatorio();
+var nome = nome_aleatorio();
+document.querySelector("#nome_user").innerText = "Nome: " + nome;
+
+
+
 
 
 
@@ -103,6 +107,8 @@ var botao = document.getElementById("botao1");
 botao.addEventListener("click",function()
 {
     nome = document.querySelector("#name").value;
+    document.querySelector("#nome_user").innerText = "Nome: " + nome;
+
 })
 
 function input(ev)
@@ -281,7 +287,9 @@ function score()
 }
 function adicionaRanking(nome,pontos)
 {
-    console.log("teste")
+    let ajax;
+    ajax = new XMLHttpRequest();
+    console.log("teste");
     ajax.open("POST",'http://localhost:3000/inserir');
     ajax.setRequestHeader("Content-Type", "application/json");
     ajax.onreadystatechange = function()
